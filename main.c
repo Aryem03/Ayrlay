@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<stdlin.h>
+#include<stdlib.h>
 
 void modeEnseignant(){
 	printf("\n --- Bienvenue dans le mode Enseignant ---\n");
