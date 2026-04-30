@@ -1,10 +1,10 @@
 #ifndef QCM_H
 #define QCM_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <dirent.h> // pour ouvrir et fermer dossier 
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<dirent.h> // pour ouvrir et fermer dossier 
 
 #ifdef _WIN32
     #include <direct.h>
