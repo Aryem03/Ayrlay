@@ -1,5 +1,5 @@
-#include "qcm.h"
-#include "enseignant.h"
+#include"qcm.h"
+#include"enseignant.h"
 
 int scanf_secu (const char *prompt, int min, int max) {
     char buffer[64];
