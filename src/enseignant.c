@@ -16,7 +16,7 @@ int scanf_secu (const char *prompt, int min, int max) {
 
 int verifier_mdp(const char *saisie) {
     char mdp[64];
-    strcpy(mdp, MDP_DEFAULT); //Par défaut tu mets le mdp = admin
+    strcpy(mdp, MDP_DEFAULT); //Par défaut on mets le mdp = admin
     FILE *f = fopen(MDP_FILE, "r"); // on lit le fichier qui doit contenir mdp
     if (f) {
         fgets(mdp, sizeof(mdp), f); // si le fichier existe,mdp = contenu fichier
