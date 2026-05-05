@@ -2,21 +2,6 @@
 #include"enseignant.h"
 
 
-/*
-int scanf_secu (const char *prompt, int min, int max) {
-    char buffer[64];
-    int val;
-    while (1) {
-        printf("%s", prompt);
-        if (!fgets(buffer, sizeof(buffer), stdin)) continue;
-        if (sscanf(buffer, "%d", &val) == 1
-                && val >= min && val <= max)
-            return val;
-        printf("Invalide. Entrez entre %d et %d : ", min, max);
-    }
-}
-*/
-
 int scanf_secu(const char *prompt, int min, int max) {
     char buffer[64];
     int val;
