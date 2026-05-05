@@ -3,18 +3,9 @@
 int sauvegarder_qcm(const QCM *q) {
     char path[300];
     snprintf(path, sizeof(path), "%s/%s.qcm", DOSSIER_DATA, q->nom);
-    
-    // Vérifier si le fichier existe déjà
-    FILE *test = fopen(path, "r");
-    if (test != NULL) {
-        fclose(test);
-        printf("Erreur : un QCM nomme '%s' existe deja.\n", q->nom);
-        return -1;
-    }
-    
     FILE *f = fopen(path, "w");
-    if (!f) { perror("sauvegarder_qcm"); return -1; }
 
+    if (!f) { perror("sauvegarder_qcm"); return -1; }
     fprintf(f, "%s\n", q->nom);
     fprintf(f, "%d\n", q->nb_questions);
     fprintf(f, "%d\n", q->points_negatifs);
@@ -84,7 +75,7 @@ int lister_qcm(char noms[MAX_QUESTIONS][MAX_NOM]) {
     printf("\nQCM disponibles :\n");
     // Parcourt tous les fichiers du dossier 
     while ((entry = readdir(d)) != NULL && count < MAX_QUESTIONS) {
-        // Cherche la dernière occurrence de '.' -> début de l'extension 
+        // Cherche la dernière occurrence de '.' → début de l'extension 
         char *ext = strrchr(entry->d_name, '.');
         // Garde uniquement les fichiers avec extension ".qcm" 
         if (ext && strcmp(ext, ".qcm") == 0) {
@@ -92,8 +83,8 @@ int lister_qcm(char noms[MAX_QUESTIONS][MAX_NOM]) {
             int len = (int)(ext - entry->d_name);
             /* 
                Copie le nom sans ".qcm" dans noms[count]
-               %.*s -> permet de copier exactement 'len' caractères
-               snprintf -> évite les débordements (sécurisé)
+               %.*s → permet de copier exactement 'len' caractères
+               snprintf → évite les débordements (sécurisé)
             */
             snprintf(noms[count], MAX_NOM, "%.*s", len, entry->d_name);
             // Affiche le nom avec un numéro pour le choix utilisateur 
