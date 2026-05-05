@@ -1,4 +1,4 @@
-#ifndef ENSEIGNANT_H
+4#ifndef ENSEIGNANT_H
 #define ENSEIGNANT_H
 
 #include"qcm.h"
