@@ -1,0 +1,12 @@
+# Fichiers objets
+*.o
+
+# Exécutable
+qcm
+qcm.exe
+
+# Dossier de sauvegarde (les QCM de test, pas à mettre sur git)
+# sauvegarde/
+
+# Fichier mot de passe
+sauvegarde/mdp.tkt
