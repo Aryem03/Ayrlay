@@ -75,7 +75,7 @@ int lister_qcm(char noms[MAX_QUESTIONS][MAX_NOM]) {
     printf("\nQCM disponibles :\n");
     // Parcourt tous les fichiers du dossier 
     while ((entry = readdir(d)) != NULL && count < MAX_QUESTIONS) {
-        // Cherche la dernière occurrence de '.' → début de l'extension 
+        // Cherche la dernière occurrence de '.' 
         char *ext = strrchr(entry->d_name, '.');
         // Garde uniquement les fichiers avec extension ".qcm" 
         if (ext && strcmp(ext, ".qcm") == 0) {
