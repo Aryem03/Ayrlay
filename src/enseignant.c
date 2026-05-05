@@ -30,7 +30,7 @@ int verifier_mdp(const char *saisie) {
         fgets(mdp, sizeof(mdp), f); // si le fichier existe,mdp = contenu fichier
         mdp[strcspn(mdp, "\n")] = 0;
         fclose(f);
-        // Si le fichier est vide → revenir au mot de passe par défaut
+        // Si le fichier est vide -> revenir au mot de passe par défaut
         if (mdp[0] == '\0')
             strcpy(mdp, MDP_DEFAULT);
     }
