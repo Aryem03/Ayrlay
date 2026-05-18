@@ -1,9 +1,9 @@
 #include "qcm.h"
 
 int sauvegarder_qcm(const QCM *q) {
-    char path[300];
-    snprintf(path, sizeof(path), "%s/%s.qcm", DOSSIER_DATA, q->nom);
-    FILE *f = fopen(path, "w");
+    char chemin[300];
+    snprintf(chemin, sizeof(chemin), "%s/%s.qcm", DOSSIER_DATA, q->nom);
+    FILE *f = fopen(chemin, "w");
 
     if (!f) {
         perror("sauvegarder_qcm"); 
