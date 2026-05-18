@@ -32,8 +32,9 @@ int verifier_mdp(const char *saisie) {
         if (mdp[0] == '\0') strcpy(mdp, MDP_DEFAULT);
     }
     return strcmp(saisie, mdp) == 0; 
+}
 
-void changer_mdp(void) {
+void changer_mdp() {
     char nouveau[64];
     printf("Nouveau mot de passe : ");
     fgets(nouveau, sizeof(nouveau), stdin); //stocke dans la chaine
@@ -50,7 +51,7 @@ void changer_mdp(void) {
     printf("Mot de passe modifie.\n");
 }
 
-void saisir_qcm(void) {
+void saisir_qcm() {
     QCM q = {0};
 
     // Boucle jusqu'à avoir un nom valide
