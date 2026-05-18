@@ -15,8 +15,7 @@ int scanf_secu(const char *prompt, int min, int max) {
             while ((c = getchar()) != '\n' && c != EOF);
         }
         
-        if (sscanf(buffer, "%d", &val) == 1
-                && val >= min && val <= max)
+        if (sscanf(buffer, "%d", &val) == 1 && val >= min && val <= max)
             return val;
         printf("Invalide. Entrez entre %d et %d : ", min, max);
     }
@@ -24,29 +23,25 @@ int scanf_secu(const char *prompt, int min, int max) {
 
 int verifier_mdp(const char *saisie) {
     char mdp[64];
-    strcpy(mdp, MDP_DEFAULT); //Par défaut tu mets le mdp = admin
-    FILE *f = fopen(MDP_FILE, "r"); // on lit le fichier qui doit contenir mdp
+    strcpy(mdp, MDP_DEFAULT); 
+    FILE *f = fopen(MDP_FILE, "r"); 
     if (f) {
-        fgets(mdp, sizeof(mdp), f); // si le fichier existe,mdp = contenu fichier
+        fgets(mdp, sizeof(mdp), f); // mdp = contenu fichier
         mdp[strcspn(mdp, "\n")] = 0;
         fclose(f);
-        // Si le fichier est vide -> revenir au mot de passe par défaut
-        if (mdp[0] == '\0')
-            strcpy(mdp, MDP_DEFAULT);
+        if (mdp[0] == '\0') strcpy(mdp, MDP_DEFAULT);
     }
-    return strcmp(saisie, mdp) == 0; // on compare la saisie et le vrai mdp
-} // si 0=0 : vrai sinon faux (0=0 veut dire que saisie=mdp)
-
+    return strcmp(saisie, mdp) == 0; 
 
 void changer_mdp(void) {
     char nouveau[64];
     printf("Nouveau mot de passe : ");
     fgets(nouveau, sizeof(nouveau), stdin); //stocke dans la chaine
-    nouveau[strcspn(nouveau, "\n")] = 0; //on enleve tjr le \n du fgets
+    nouveau[strcspn(nouveau, "\n")] = 0; 
 
     FILE *f = fopen(MDP_FILE, "w");
     if (!f) { 
-		perror("changer_mdp"); //si le fichier n'existe pas : erreur
+		perror("changer_mdp"); 
 		return; 
 	}
 	
@@ -56,8 +51,7 @@ void changer_mdp(void) {
 }
 
 void saisir_qcm(void) {
-    QCM q;
-    memset(&q, 0, sizeof(QCM));
+    QCM q = {0};
 
     // Boucle jusqu'à avoir un nom valide
     do {
@@ -70,7 +64,6 @@ void saisir_qcm(void) {
             continue;
         }
 
-        // Vérifier que le nom ne contient que des caractères autorisés
         int nom_valide = 1;
         for (int k = 0; q.nom[k] != '\0'; k++) {
             unsigned char c = (unsigned char)q.nom[k];
@@ -94,7 +87,7 @@ void saisir_qcm(void) {
     for (int i = 0; i < q.nb_questions; i++) {
         Question *qi = &q.questions[i];
 
-        // Énoncé non vide
+         // Boucle permettant d'avoir des énoncés de questions valides 
         do {
             printf("\nQuestion %d : ", i+1);
             fgets(qi->enonce, 512, stdin);
@@ -108,7 +101,7 @@ void saisir_qcm(void) {
         int nb_correctes = 0;
         for (int j = 0; j < qi->nb_reponses; j++) {
 
-            // Texte de réponse non vide
+            //  Boucle permettant d'avoir des réponses remplies valides + indiquer si correcte ou non
             do {
                 printf("  Reponse %d : ", j+1);
                 fgets(qi->reponses[j].texte, 256, stdin);
@@ -122,7 +115,6 @@ void saisir_qcm(void) {
             if (val == 1) nb_correctes++;
         }
 
-        // Vérifier qu'au moins une réponse est correcte
         if (nb_correctes == 0) {
             printf("Erreur : au moins une reponse doit etre correcte. Recommencez cette question.\n");
             memset(qi, 0, sizeof(Question));
@@ -130,15 +122,13 @@ void saisir_qcm(void) {
             continue;
         }
 
-        // Si multi-reponses desactive : exactement une seule bonne reponse autorisee
         if (!q.multi_reponses && nb_correctes > 1) {
             printf("Erreur : une seule bonne reponse autorisee. Recommencez cette question.\n");
             memset(qi, 0, sizeof(Question));
             i--;
             continue;
         }
-
-        // Si multi-reponses desactive : au moins une reponse incorrecte requise
+		
         if (!q.multi_reponses && nb_correctes == qi->nb_reponses) {
             printf("Erreur : au moins une reponse doit etre incorrecte. Recommencez cette question.\n");
             memset(qi, 0, sizeof(Question));
@@ -149,18 +139,14 @@ void saisir_qcm(void) {
     sauvegarder_qcm(&q);
 }
 
-void menu_enseignant(void) {
-    
-//Mot de passe
+void menu_enseignant() {
     char saisie[64];
     printf("Mot de passe : ");
     fgets(saisie, sizeof(saisie), stdin);
     saisie[strcspn(saisie, "\n")] = 0;
     if (!verifier_mdp(saisie)) {
         printf("Mot de passe incorrect.\n"); return;
-    }
-
-//Menu du mode enseignant
+    } 
     int choix;
     do {
         printf("\n-- Menu Enseignant --\n");
