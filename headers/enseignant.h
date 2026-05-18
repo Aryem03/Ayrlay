@@ -5,12 +5,12 @@
 
 #define MDP_DEFAULT "admin"
 
-#define MDP_FILE      "sauvegarde/mdp.tkt"
+#define MDP_FILE  "sauvegarde/mdp.tkt"
 
 
 int  verifier_mdp(const char *saisie);
-void changer_mdp(void);
-void menu_enseignant(void);
-void saisir_qcm(void);
+void changer_mdp();
+void menu_enseignant();
+void saisir_qcm();
 
-#endif /* ENSEIGNANT_H */
+#endif
