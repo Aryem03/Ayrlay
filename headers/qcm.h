@@ -13,7 +13,7 @@
     #include <sys/stat.h>
     #define CREER_DOSSIER mkdir("sauvegarde", 0777)
 #endif
-//mettre CREER_DOSSIER dans le main
+
 
 #define MAX_REPONSES  8
 #define MAX_QUESTIONS 50
@@ -23,7 +23,7 @@
 
 typedef struct {
     char texte[256];
-    int  est_correcte;   /* 1 = vraie, 0 = fausse */
+    int  est_correcte;  //1 = vraie, 0 = fausse 
 } Reponse;
 
 typedef struct {
@@ -48,4 +48,4 @@ int  lister_qcm(char noms[MAX_QUESTIONS][MAX_NOM]);
 void menu_etudiant(void);
 
 
-#endif /*QCM_H*/
+#endif
