@@ -10,7 +10,8 @@
 
 int  verifier_mdp(const char *saisie);
 void changer_mdp();
-void menu_enseignant();
 void saisir_qcm();
+void menu_enseignant();
+
 
 #endif
