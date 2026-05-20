@@ -42,7 +42,6 @@ QCM charger_qcm(const char *nom) {
     q.nom[strcspn(q.nom, "\n")] = 0; 
     // fgets lit la ligne entière, sscanf extrait l'entier
     // Plus robuste que fscanf seul qui peut décaler le buffer
-    fgets(buffer, sizeof(buffer), f); sscanf(buffer, "%d", &q.nb_questions);
     fgets(buffer,sizeof(buffer),f); sscanf(buffer,"%d",&q.nb_questions); 
     fgets(buffer,sizeof(buffer),f); sscanf(buffer,"%d",&q.points_negatifs);
     fgets(buffer,sizeof(buffer),f); sscanf(buffer,"%d",&q.multi_reponses);
