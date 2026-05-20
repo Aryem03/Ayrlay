@@ -29,8 +29,7 @@ int sauvegarder_qcm(const QCM *q) {
 }
 
 QCM charger_qcm(const char *nom) { 
-    QCM q;
-    memset(&q, 0, sizeof(QCM));
+    QCM q = {0};
     char chemin[300], buffer[512];
     // Construit le chemin complet : "sauvegarde/nom_du_qcm.qcm"
     snprintf(chemin, sizeof(chemin), "%s/%s.qcm", DOSSIER_DATA, nom); 
