@@ -24,7 +24,7 @@ float calculer_note(QCM *q, int reponses[MAX_QUESTIONS][MAX_REPONSES]) {
 
 void passer_qcm(QCM *q) {
     int reponses[MAX_QUESTIONS][MAX_REPONSES];
-    QCM q = {0};
+    memset(reponses, 0, sizeof(reponses));
 
     printf("\n=== Debut du QCM : %s ===\n", q->nom);
     printf("Ce QCM contient %d question(s). Bonne chance !\n", q->nb_questions);
