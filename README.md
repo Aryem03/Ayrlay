@@ -53,10 +53,11 @@ make
 ```bash
 ./programme_quiz
 ```
-### Pour Windows (avec MinGW)
-mingw32-make
+**Pour Windows (avec MinGW)**
+```bash
+mingw32-make 
 programme_quiz.exe
-
+```
 ## Mot de passe par défaut
 Un mot de passe est deja fourni si vous voulez directement faire les qcm, il suffit d'entrer:   "admin"
 
