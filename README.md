@@ -2,12 +2,12 @@
 # Description
 Application en ligne de commande développée en langage C permettant aux enseignants de créer des QCM et aux étudiants de les passer et d'être notés automatiquement sur 20.
 # Fonctionnalités
-    # Mode Enseignant (protégé par mot de passe)
+    \n Mode Enseignant (protégé par mot de passe)
 •  Création d'un QCM avec nom, questions et réponses
 •  Paramètres par QCM : points négatifs, multi-réponses, mode séquentiel
 •  Sauvegarde automatique dans un fichier '.qcm'
 •  Modification du mot de passe
-    # Mode Étudiant
+    \n Mode Étudiant
 •  Liste automatique des QCM disponibles
 •  Passage du QCM question par question
 •  Calcul et affichage de la note sur 20
