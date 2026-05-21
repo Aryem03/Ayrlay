@@ -2,7 +2,7 @@
 # Description
 Bienvenue dans **Ayrlay** , une application en ligne de commande développée en langage C permettant aux enseignants de créer des QCM et aux étudiants de les passer et d'être notés automatiquement sur 20.
 ## Fonctionnalités
-     ** Mode Enseignant ** :
+     * Mode Enseignant * :
 - ** Création d'un QCM avec nom, questions et réponses **
 - ** Paramètres par QCM : points négatifs, multi-réponses, mode séquentiel **
 - ** Sauvegarde automatique dans un fichier '.qcm' **
