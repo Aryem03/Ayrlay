@@ -70,7 +70,7 @@ Trois QCM sont déjà fournis avec le projet pour permettre une démonstration i
 
 | Nom | Sujet | Points négatifs | Multi-réponses | Séquentiel |
 | :--- | :--- | :---: | :---: | :---: |
-| IA | Intelligence Artificielle | Non | Oui | Non |
+| Sport | Sport du Monde | Oui | Non | Non |
 | Animaux | Animaux du monde | Oui | Non | Oui |
 
 ## Choix techniques
