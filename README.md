@@ -62,7 +62,6 @@ programme_quiz.exe
 ```
 ## Mot de passe par défaut
 Un mot de passe est deja fourni si vous voulez directement faire les qcm, il suffit d'entrer:   "admin"
-
 Sinon le mot de passe peut être modifié depuis le mode enseignant. Il est stocké dans 'sauvegarde/mdp.tkt'.
 
 ## QCM fournis
@@ -76,10 +75,10 @@ Trois QCM sont déjà fournis avec le projet pour permettre une démonstration i
 
 ## Choix techniques
 
-• **"scanf_secu"**:  - remplace "scanf" pour éviter les crashs en cas de saisie invalide (utilise "fgets" + "sscanf")
-• **"dirent.h"**:    - bibliothèque standard POSIX pour lister les fichiers du dossier "sauvegarde/", compatible Linux/Mac. Gestion Windows via "#ifdef _WIN32"
-• **"fgets" + "sscanf"**: - utilisés systématiquement pour la lecture de fichiers, plus robustes que "fscanf" seul
-• **"CREER_DOSSIER"** - macro qui crée automatiquement le dossier "sauvegarde/" au premier lancement
+* **"scanf_secu"**:  - remplace "scanf" pour éviter les crashs en cas de saisie invalide (utilise "fgets" + "sscanf").
+* **"dirent.h"**:    - bibliothèque standard POSIX pour lister les fichiers du dossier "sauvegarde/", compatible Linux/Mac. Gestion Windows via "#ifdef _WIN32".
+* **"fgets" + "sscanf"**: - utilisés systématiquement pour la lecture de fichiers, plus robustes que "fscanf" seul.
+* **"CREER_DOSSIER"** - macro qui crée automatiquement le dossier "sauvegarde/" au premier lancement.
 
 ## Contributeurs
 
