@@ -34,8 +34,48 @@ Bienvenue dans **Ayrlay** , une application en ligne de commande développée en
 
 ## Compilation et Exécution
 
+### Prérequis
+- Un compilateur C (comme `gcc`).
+- L'Utilitaire `make`
+### Étapes
+1. Clonez le dépôt :
+   ```bash
+   
 ### Linux / Mac
 ```bash
 make
 ./programme_quiz
 
+### Windows (avec MinGW)
+mingw32-make
+programme_quiz.exe
+
+## Mot de passe par défaut
+
+"admin"
+
+Le mot de passe peut être modifié depuis le mode enseignant. Il est stocké dans 'sauvegarde/mdp.tkt'.
+
+## QCM fournis
+
+Trois QCM sont fournis avec le projet pour permettre une démonstration immédiate :
+
+| Nom | Sujet | Points négatifs | Multi-réponses | Séquentiel |
+| :--- | :--- | :---: | :---: | :---: |
+| IA | Intelligence Artificielle | Non | Oui | Non |
+| Animaux | Animaux du monde | Oui | Non | Oui |
+
+## Choix techniques
+
+• "scanf_secu" - remplace "scanf" pour éviter les crashs en cas de saisie invalide (utilise "fgets" + "sscanf")
+• "dirent.h" - bibliothèque standard POSIX pour lister les fichiers du dossier "sauvegarde/", compatible Linux/Mac. Gestion Windows via "#ifdef _WIN32"
+• "fgets" + "sscanf" - utilisés systématiquement pour la lecture de fichiers, plus robustes que "fscanf" seul
+• "CREER_DOSSIER" - macro qui crée automatiquement le dossier "sauvegarde/" au premier lancement
+
+## Contributeurs
+
+**EQUIPE :** Alaa OUAZBIR & Aryem ZITOUNE
+
+
+Merci d'utiliser **Ayrlay** pour crée et faire les qcm !
+(Un projet pour CYTECH)
