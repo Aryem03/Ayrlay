@@ -76,10 +76,10 @@ Trois QCM sont déjà fournis avec le projet pour permettre une démonstration i
 
 ## Choix techniques
 
-• "scanf_secu" - remplace "scanf" pour éviter les crashs en cas de saisie invalide (utilise "fgets" + "sscanf")
-• "dirent.h" - bibliothèque standard POSIX pour lister les fichiers du dossier "sauvegarde/", compatible Linux/Mac. Gestion Windows via "#ifdef _WIN32"
-• "fgets" + "sscanf" - utilisés systématiquement pour la lecture de fichiers, plus robustes que "fscanf" seul
-• "CREER_DOSSIER" - macro qui crée automatiquement le dossier "sauvegarde/" au premier lancement
+• **"scanf_secu"**:  - remplace "scanf" pour éviter les crashs en cas de saisie invalide (utilise "fgets" + "sscanf")
+• **"dirent.h"**:    - bibliothèque standard POSIX pour lister les fichiers du dossier "sauvegarde/", compatible Linux/Mac. Gestion Windows via "#ifdef _WIN32"
+• **"fgets" + "sscanf"**: - utilisés systématiquement pour la lecture de fichiers, plus robustes que "fscanf" seul
+• **"CREER_DOSSIER"** - macro qui crée automatiquement le dossier "sauvegarde/" au premier lancement
 
 ## Contributeurs
 
