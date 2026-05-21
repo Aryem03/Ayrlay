@@ -48,11 +48,13 @@ Bienvenue dans **Ayrlay** , une application en ligne de commande développée en
 * **Linux / Mac**:
 ```bash
 make
-```bash
+```
+
 3.Exécutez le programme :
 ```bash
 ./programme_quiz
 ```
+
 **Pour Windows (avec MinGW)**
 ```bash
 mingw32-make 
