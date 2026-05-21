@@ -40,25 +40,31 @@ Bienvenue dans **Ayrlay** , une application en ligne de commande développée en
 ### Étapes
 1. Clonez le dépôt :
    ```bash
-   
-### Linux / Mac
+   https://github.com/Aryem03/Ayrlay.git
+   cd Ayrlay
+   ```
+2. Compilez le projet (avec linux/Mac):   
+
+* **Linux / Mac**:
 ```bash
 make
+```bash
+3.Exécutez le programme :
+```bash
 ./programme_quiz
-
-### Windows (avec MinGW)
+```
+### Pour Windows (avec MinGW)
 mingw32-make
 programme_quiz.exe
 
 ## Mot de passe par défaut
+Un mot de passe est deja fourni si vous voulez directement faire les qcm, il suffit d'entrer:   "admin"
 
-"admin"
-
-Le mot de passe peut être modifié depuis le mode enseignant. Il est stocké dans 'sauvegarde/mdp.tkt'.
+Sinon le mot de passe peut être modifié depuis le mode enseignant. Il est stocké dans 'sauvegarde/mdp.tkt'.
 
 ## QCM fournis
 
-Trois QCM sont fournis avec le projet pour permettre une démonstration immédiate :
+Trois QCM sont déjà fournis avec le projet pour permettre une démonstration immédiate :
 
 | Nom | Sujet | Points négatifs | Multi-réponses | Séquentiel |
 | :--- | :--- | :---: | :---: | :---: |
