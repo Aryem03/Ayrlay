@@ -7,6 +7,7 @@ float calculer_note(QCM *q, int reponses[MAX_QUESTIONS][MAX_REPONSES]) {
     for (int i = 0; i < q->nb_questions; i++) {
         Question *qi = &q->questions[i];
         int bonne = 1;
+        if (reponses[i][0] == -1) continue;
         for (int j = 0; j < qi->nb_reponses; j++) {
             if (reponses[i][j] != qi->reponses[j].est_correcte) {
                 bonne = 0;
@@ -25,7 +26,14 @@ float calculer_note(QCM *q, int reponses[MAX_QUESTIONS][MAX_REPONSES]) {
 void passer_qcm(QCM *q) {
     int reponses[MAX_QUESTIONS][MAX_REPONSES];
     memset(reponses, 0, sizeof(reponses));
-
+    
+    printf("\n-------------------------");
+    printf("\nParametres du QCM : \n\n");
+    printf("Points negatifs : %s\n", q->points_negatifs ? "Oui" : "Non");
+    printf("Multi-reponses  : %s\n", q->multi_reponses ? "Oui" : "Non");
+    printf("Mode sequentiel (Reponse Obligatoire?): %s\n", q->sequentiel ? "Oui" : "Non");
+    printf("-------------------------\n\n");
+    
     printf("\n=== Debut du QCM : %s ===\n", q->nom);
     printf("Ce QCM contient %d question(s). Bonne chance !\n", q->nb_questions);
 
@@ -71,7 +79,10 @@ void passer_qcm(QCM *q) {
             if (q->sequentiel) min=1;
             else min = 0;
             int c = scanf_secu("\nEntrez le numero de votre reponse : ", min, qi->nb_reponses);
-            if (c == 0) printf("Question passee.\n");
+            if (c == 0){
+                printf("Question passee.\n");
+                reponses[i][0] = -1;
+            }
             else reponses[i][c-1] = 1; //reponse choisie par l'eleve
         }
     }
