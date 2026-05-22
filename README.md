@@ -1,7 +1,7 @@
 # Gestionnaire de QCM — Ayrlay
 
 # Description
-Bienvenue dans **Ayrlay** , une application en ligne de commande développée en langage C permettant aux enseignants de créer des QCM et aux étudiants de les passer et d'être notés automatiquement sur 20.
+Bienvenue dans **Ayrlay** , une application en ligne de commande développée en langage C permettant aux enseignants de créer des QCMs et aux étudiants de les passer et d'être notés automatiquement sur 20.
 
 ## Fonctionnalités
 
@@ -17,7 +17,7 @@ Bienvenue dans **Ayrlay** , une application en ligne de commande développée en
 * **Liste des QCM** : Affichage automatique des questionnaires disponibles dans le dossier de sauvegarde.
 * **Passage de test** : Répondez aux questions une par une.
 * **Notation automatique** : Calcul et affichage direct de la note sur 20 à la fin du test.
-* **Saut de question** : Possibilité de passer une question (si le mode non séquentiel est activé).
+* **Saut de question** : Possibilité de passer une question (si le mode séquentiel est désactivé).
 
 ## Structure du projet
 
@@ -37,41 +37,58 @@ Bienvenue dans **Ayrlay** , une application en ligne de commande développée en
 ### Prérequis
 - Un compilateur C (comme `gcc`).
 - L'Utilitaire `make`
+- Sur Windows : installer [MinGW](https://www.mingw-w64.org/)
+  
 ### Étapes
+
 1. Clonez le dépôt :
    ```bash
    https://github.com/Aryem03/Ayrlay.git
    cd Ayrlay
    ```
-2. Compilez le projet (avec linux/Mac):   
+   
+2. Compilez le projet :   
 
-* **Linux / Mac**:
+**Linux / Mac**:
 ```bash
 make
 ```
 
-3.Exécutez le programme :
-```bash
-./programme_quiz
-```
-
-**Pour Windows (avec MinGW)**
+**Windows**
 ```bash
 mingw32-make 
-programme_quiz.exe
 ```
+ou 
+```bash
+make
+```
+
+
+3.Exécutez le programme :
+```bash
+./qcm
+```
+
+### Compiler et exécuter en meme temps si possible 
+
+```bash
+make run
+```
+
+
 ## Mot de passe par défaut
-Un mot de passe est deja fourni si vous voulez directement faire les qcm, il suffit d'entrer:   "admin"
-Sinon le mot de passe peut être modifié depuis le mode enseignant. Il est stocké dans 'sauvegarde/mdp.tkt'.
+Un mot de passe est deja fourni si vous voulez directement faire les qcms, il suffit d'entrer: "admin"
+Sinon le mot de passe peut être modifié depuis le mode enseignant. Il sera stocké dans 'sauvegarde/mdp.tkt'.
 
 ## QCM fournis
 
 Trois QCM sont déjà fournis avec le projet pour permettre une démonstration immédiate :
 
-| Nom | Sujet | Points négatifs | Multi-réponses | Séquentiel |
-| :--- | :--- | :---: | :---: | :---: |
-| Sport | Sport du Monde | Oui | Non | Non |
-| Animaux | Animaux du monde | Oui | Non | Oui |
+| Nom | Points négatifs | Multi-réponses | Séquentiel |
+| :---: | :---: | :---: | :---: |
+| Sport | Oui | Non | Non |
+| Capitale | Non | Non | Oui |
+| Gastronomie | Non | Oui | Oui |
 
 ## Choix techniques
 
@@ -85,5 +102,4 @@ Trois QCM sont déjà fournis avec le projet pour permettre une démonstration i
 **EQUIPE :** Alaa OUAZBIR & Aryem ZITOUNE
 
 
-Merci d'utiliser **Ayrlay** pour crée et faire les qcm !
-(Un projet pour CYTECH)
+Merci d'utiliser **Ayrlay** pour créer et faire des qcms !
