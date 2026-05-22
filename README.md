@@ -1,6 +1,6 @@
 # Gestionnaire de QCM — Ayrlay
 
-# Description
+## Description
 Bienvenue dans **Ayrlay** , une application en ligne de commande développée en langage C permettant aux enseignants de créer des QCMs et aux étudiants de les passer et d'être notés automatiquement sur 20.
 
 ## Fonctionnalités
