@@ -48,26 +48,26 @@ Bienvenue dans **Ayrlay** , une application en ligne de commande développée en
    ```
    
 2. Compilez le projet :   
-
-**Linux / Mac**:
-```bash
-make
-```
-
-**Windows**
-```bash
-mingw32-make 
-```
-ou 
-```bash
-make
-```
+  
+  **Linux / Mac**:
+  ```bash
+  make
+  ```
+  
+  **Windows**
+  ```bash
+  mingw32-make 
+  ```
+  ou 
+  ```bash
+  make
+  ```
 
 
 3.Exécutez le programme :
-```bash
-./qcm
-```
+  ```bash
+  ./qcm
+  ```
 
 ### Compiler et exécuter en meme temps si possible 
 
