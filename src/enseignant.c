@@ -36,9 +36,29 @@ int verifier_mdp(const char *saisie) {
 
 void changer_mdp() {
     char nouveau[64];
-    printf("Nouveau mot de passe : ");
-    fgets(nouveau, sizeof(nouveau), stdin); //stocke dans la chaine
-    nouveau[strcspn(nouveau, "\n")] = 0; 
+	do{
+	    printf("Nouveau mot de passe : ");
+	    fgets(nouveau, sizeof(nouveau), stdin); //stocke dans la chaine
+	    nouveau[strcspn(nouveau, "\n")] = 0; 
+
+		// Si le buffer est plein, vider le reste de stdin
+        if (strlen(nouveau) >= 63) {
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+            nouveau[0] = '\0';
+            printf("Erreur : 20 caracteres maximum.\n");
+            continue;
+        }
+
+        if (nouveau[0] == '\0') {
+            printf("Erreur : le mot de passe ne peut pas etre vide.\n");
+        } 
+        else if (strlen(nouveau) > 20) {
+            printf("Erreur : 20 caracteres maximum.\n");
+            nouveau[0] = '\0';
+        }
+        
+    } while (nouveau[0] == '\0');
 
     FILE *f = fopen(MDP_FILE, "w");
     if (!f) { 
