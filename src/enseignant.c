@@ -1,7 +1,7 @@
 #include"qcm.h"
 #include"enseignant.h"
 
-//fonction permettant de sécuriser la saisie
+// Saisie securisee d'un entier entre min et max, evite les boucles infinies sur entree invalide
 int scanf_secu(const char *prompt, int min, int max) {
     char buffer[64];
     int val;
@@ -9,7 +9,7 @@ int scanf_secu(const char *prompt, int min, int max) {
         printf("%s", prompt);
         if (!fgets(buffer, sizeof(buffer), stdin)) continue;
         
-        // Vider le buffer si la ligne était trop longue
+        //Vider stdin si le buffer est plein
         if (buffer[strlen(buffer)-1] != '\n') {
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
@@ -21,6 +21,7 @@ int scanf_secu(const char *prompt, int min, int max) {
     }
 }
 
+// Verifie le mot de passe : lit MDP_FILE, utilise MDP_DEFAULT si fichier absent ou vide
 int verifier_mdp(const char *saisie) {
     char mdp[64];
     strcpy(mdp, MDP_DEFAULT); 
@@ -34,11 +35,12 @@ int verifier_mdp(const char *saisie) {
     return strcmp(saisie, mdp) == 0; 
 }
 
+// Permet de changer le mot de passe et le sauvegarder dans MDP_FILE
 void changer_mdp() {
     char nouveau[64];
 	do{
 	    printf("Nouveau mot de passe : (max 20 caracteres)");
-	    fgets(nouveau, sizeof(nouveau), stdin); //stocke dans la chaine
+	    fgets(nouveau, sizeof(nouveau), stdin); 
 	    nouveau[strcspn(nouveau, "\n")] = 0; 
 
 		// Si le buffer est plein, vider le reste de stdin
@@ -71,6 +73,7 @@ void changer_mdp() {
     printf("Mot de passe modifie.\n");
 }
 
+// Saisie interactive d'un QCM complet (nom, parametres, questions, reponses) puis sauvegarde
 void saisir_qcm() {
     QCM q = {0};
 
@@ -108,6 +111,7 @@ void saisir_qcm() {
         }
     } while (q.nom[0] == '\0');
 
+	// Parametres globaux du QCM, valables pour toutes les questions
     q.points_negatifs = scanf_secu("Points negatifs ?     (0/1) : ", 0, 1);
     q.multi_reponses  = scanf_secu("Multi-reponses ?      (0/1) : ", 0, 1);
     q.sequentiel      = scanf_secu("Reponse obligatoire ? (0/1) : ", 0, 1);
@@ -205,6 +209,7 @@ void saisir_qcm() {
     }
 }
 
+// Point d'entree du mode enseignant : verification du mot de passe puis menu
 void menu_enseignant() {
     char saisie[64];
     printf("Mot de passe : ");
