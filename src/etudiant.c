@@ -75,17 +75,18 @@ void passer_qcm(QCM *q) {
                 reponses[i][c-1] = 1;
                 nb_coches++;
             }
-            
-            int bonne = 1;
-            for (int k = 0; k < qi->nb_reponses; k++) {
-                if (reponses[i][k] != qi->reponses[k].est_correcte) {
-                    bonne = 0;
-                    break;
+            if(reponses[i][0] != -1){
+                int bonne = 1;
+                for (int k = 0; k < qi->nb_reponses; k++) {
+                    if (reponses[i][k] != qi->reponses[k].est_correcte) {
+                        bonne = 0;
+                        break;
+                    }
                 }
+                if (bonne) printf("\nBonne reponse !\n");
+                else printf("\nMauvaise reponse.\n");
             }
-            if (bonne) printf("\nBonne reponse !\n");
-            else printf("\nMauvaise reponse.\n");
-        } 
+        }
         else {
             
             int min;
