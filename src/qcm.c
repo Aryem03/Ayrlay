@@ -1,5 +1,7 @@
 #include "qcm.h"
 
+// Sauvegarde un QCM dans un fichier .qcm dans le dossier sauvegarde/
+// Retourne 0 si succes, -1 si le nom existe deja ou si erreur fichier
 int sauvegarder_qcm(const QCM *q) {
     char chemin[300];
     snprintf(chemin, sizeof(chemin), "%s/%s.qcm", DOSSIER_DATA, q->nom);
@@ -36,10 +38,11 @@ int sauvegarder_qcm(const QCM *q) {
     return 0;
 }
 
+// Charge un QCM depuis son fichier .qcm et retourne la structure remplie
+// Retourne un QCM vide (nb_questions == 0) en cas d'erreur
 QCM charger_qcm(const char *nom) { 
     QCM q = {0};
     char chemin[300], buffer[512];
-    // Construit le chemin complet : "sauvegarde/nom_du_qcm.qcm"
     snprintf(chemin, sizeof(chemin), "%s/%s.qcm", DOSSIER_DATA, nom); 
     FILE *f = fopen(chemin, "r");
     if (!f) {
@@ -48,8 +51,9 @@ QCM charger_qcm(const char *nom) {
     }
     fgets(q.nom, MAX_NOM, f); 
     q.nom[strcspn(q.nom, "\n")] = 0; 
-    // fgets lit la ligne entière, sscanf extrait l'entier
-    // Plus robuste que fscanf seul qui peut décaler le buffer
+    
+    // Lecture des parametres globaux
+    // fgets + sscanf : plus robuste que fscanf seul qui peut decaler le buffer
     fgets(buffer,sizeof(buffer),f); sscanf(buffer,"%d",&q.nb_questions); 
     fgets(buffer,sizeof(buffer),f); sscanf(buffer,"%d",&q.points_negatifs);
     fgets(buffer,sizeof(buffer),f); sscanf(buffer,"%d",&q.multi_reponses);
@@ -73,6 +77,8 @@ QCM charger_qcm(const char *nom) {
     return q;
 }
 
+// Liste tous les fichiers .qcm du dossier sauvegarde/ et remplit le tableau noms
+// Retourne le nombre de QCM trouves
 int lister_qcm(char noms[MAX_QUESTIONS][MAX_NOM]) {
     DIR *d = opendir(DOSSIER_DATA);
     if (!d) {
@@ -89,7 +95,7 @@ int lister_qcm(char noms[MAX_QUESTIONS][MAX_NOM]) {
         if (len < 5) continue;  
         if (len - 4 >= MAX_NOM) continue;
 
-        // on prend juste le nom du qcm pour l'afficher ensuite
+        // Garde uniquement les fichiers avec l'extension .qcm
         if (strcmp(nom + len - 4, ".qcm") == 0) { 
             strncpy(noms[count], nom, len - 4); 
             noms[count][len - 4] = '\0';  
