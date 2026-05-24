@@ -131,6 +131,11 @@ void saisir_qcm() {
                 continue;
             }
 
+			if (strlen(qi->enonce) > 100) {
+                printf("Erreur : enonce trop long (100 caracteres max).\n");
+                qi->enonce[0] = '\0';
+            }
+
             if (qi->enonce[0] == '\0')
                 printf("Erreur : l'enonce ne peut pas etre vide.\n");
         } while (qi->enonce[0] == '\0');
