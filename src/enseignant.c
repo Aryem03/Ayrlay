@@ -1,7 +1,7 @@
 #include"qcm.h"
 #include"enseignant.h"
 
-
+//fonction permettant de sécuriser la saisie
 int scanf_secu(const char *prompt, int min, int max) {
     char buffer[64];
     int val;
@@ -37,7 +37,7 @@ int verifier_mdp(const char *saisie) {
 void changer_mdp() {
     char nouveau[64];
 	do{
-	    printf("Nouveau mot de passe : ");
+	    printf("Nouveau mot de passe : (max 20 caracteres)");
 	    fgets(nouveau, sizeof(nouveau), stdin); //stocke dans la chaine
 	    nouveau[strcspn(nouveau, "\n")] = 0; 
 
@@ -97,7 +97,7 @@ void saisir_qcm() {
         for (int k = 0; q.nom[k] != '\0'; k++) {
             unsigned char c = (unsigned char)q.nom[k];
             if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
-                  (c >= '0' && c <= '9') || c == '_' || c >= 128)) {
+                  (c >= '0' && c <= '9') || c == '_' )) {
                 nom_valide = 0;
                 break;
             }
@@ -134,6 +134,7 @@ void saisir_qcm() {
 			if (strlen(qi->enonce) > 100) {
                 printf("Erreur : enonce trop long (100 caracteres max).\n");
                 qi->enonce[0] = '\0';
+				continue;
             }
 
             if (qi->enonce[0] == '\0')
@@ -162,6 +163,7 @@ void saisir_qcm() {
                 if (strlen(qi->reponses[j].texte) > 60) {
                     printf("Erreur : reponse trop longue (60 caracteres max).\n");
                     qi->reponses[j].texte[0] = '\0';
+					continue;
                 }
 
                 if (qi->reponses[j].texte[0] == '\0'){
@@ -215,7 +217,8 @@ void menu_enseignant() {
     }
 	
     if (!verifier_mdp(saisie)) {
-        printf("Mot de passe incorrect.\n"); return;
+        printf("Mot de passe incorrect.\n"); 
+		return;
     } 
     int choix;
     do {
