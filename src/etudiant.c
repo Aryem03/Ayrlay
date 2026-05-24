@@ -46,11 +46,10 @@ void passer_qcm(QCM *q) {
         printf("\nReponses possibles :\n");
 
         
-        for (int j = 0; j < qi->nb_reponses; j++)
+        for (int j = 0; j < qi->nb_reponses; j++){
             printf("  %d. %s\n", j+1, qi->reponses[j].texte);
-
-        if (!q->sequentiel)
-            printf("  0. Passer cette question\n");
+        }
+        if (!q->sequentiel) printf("  0. Passer cette question\n");
 
         if (q->multi_reponses) {
             printf("\nAttention : plusieurs reponses peuvent etre correctes.\n");
@@ -72,6 +71,16 @@ void passer_qcm(QCM *q) {
                 reponses[i][c-1] = 1;
                 nb_coches++;
             }
+            
+            int bonne = 1;
+            for (int k = 0; k < qi->nb_reponses; k++) {
+                if (reponses[i][k] != qi->reponses[k].est_correcte) {
+                    bonne = 0;
+                    break;
+                }
+            }
+            if (bonne) printf("\nBonne reponse !\n");
+            else printf("\nMauvaise reponse.\n");
         } 
         else {
             
@@ -83,7 +92,11 @@ void passer_qcm(QCM *q) {
                 printf("Question passee.\n");
                 reponses[i][0] = -1;
             }
-            else reponses[i][c-1] = 1; //reponse choisie par l'eleve
+            else{
+                reponses[i][c-1] = 1; //reponse choisie par l'eleve
+                if (qi->reponses[c-1].est_correcte) printf("\nBonne reponse !\n");
+                else printf("\nMauvaise reponse.\n");
+            }
         }
     }
 
