@@ -3,6 +3,14 @@
 int sauvegarder_qcm(const QCM *q) {
     char chemin[300];
     snprintf(chemin, sizeof(chemin), "%s/%s.qcm", DOSSIER_DATA, q->nom);
+    
+    FILE *test = fopen(chemin, "r");
+    if (test != NULL) {
+        fclose(test);
+        printf("Erreur : un QCM nomme '%s' existe deja.\n", q->nom);
+        return -1;
+    }
+    
     FILE *f = fopen(chemin, "w");
 
     if (!f) {
