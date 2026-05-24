@@ -1,12 +1,13 @@
 #include "etudiant.h"
 
-
+// Calcule la note sur 20 en comparant les reponses de l'etudiant aux bonnes reponses
 float calculer_note(QCM *q, int reponses[MAX_QUESTIONS][MAX_REPONSES]) {
     float pts = 20.0f / q->nb_questions;
     float total = 0.0f;
     for (int i = 0; i < q->nb_questions; i++) {
         Question *qi = &q->questions[i];
         int bonne = 1;
+        // question passee : on ne penalise pas
         if (reponses[i][0] == -1) continue;
         for (int j = 0; j < qi->nb_reponses; j++) {
             if (reponses[i][j] != qi->reponses[j].est_correcte) {
@@ -22,7 +23,7 @@ float calculer_note(QCM *q, int reponses[MAX_QUESTIONS][MAX_REPONSES]) {
 }
 
 
-
+// Fait passer le QCM a l'etudiant question par question et affiche la note finale
 void passer_qcm(QCM *q) {
     int reponses[MAX_QUESTIONS][MAX_REPONSES];
     memset(reponses, 0, sizeof(reponses));
@@ -62,6 +63,8 @@ void passer_qcm(QCM *q) {
                         printf("Reponse obligatoire : vous devez cocher au moins une reponse.\n");
                         continue;
                     }
+
+                    // Aucune reponse cochee : marquer comme passee pour eviter une penalite injuste
                     if (nb_coches == 0) {              
                         reponses[i][0] = -1;           
                         printf("Question passee.\n"); 
@@ -75,6 +78,7 @@ void passer_qcm(QCM *q) {
                 reponses[i][c-1] = 1;
                 nb_coches++;
             }
+            // Afficher bon/mauvais uniquement si la question n'a pas ete passee
             if(reponses[i][0] != -1){
                 int bonne = 1;
                 for (int k = 0; k < qi->nb_reponses; k++) {
@@ -88,7 +92,7 @@ void passer_qcm(QCM *q) {
             }
         }
         else {
-            
+            // En mode sequentiel, min=1 force l'etudiant a repondre
             int min;
             if (q->sequentiel) min=1;
             else min = 0;
@@ -111,7 +115,7 @@ void passer_qcm(QCM *q) {
     printf("=====================================\n");
 }
 
-
+// Affiche la liste des QCM disponibles et lance le QCM choisi par l'etudiant
 void menu_etudiant() {
     char noms[MAX_QUESTIONS][MAX_NOM];
     int count = lister_qcm(noms);
