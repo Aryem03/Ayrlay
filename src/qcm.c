@@ -87,6 +87,7 @@ int lister_qcm(char noms[MAX_QUESTIONS][MAX_NOM]) {
         char *nom = entry->d_name;
         int len = strlen(nom);
         if (len < 5) continue;  
+        if (len - 4 >= MAX_NOM) continue;
 
         // on prend juste le nom du qcm pour l'afficher ensuite
         if (strcmp(nom + len - 4, ".qcm") == 0) { 
