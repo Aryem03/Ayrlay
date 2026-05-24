@@ -80,6 +80,14 @@ void saisir_qcm() {
         fgets(q.nom, MAX_NOM, stdin);
         q.nom[strcspn(q.nom, "\n")] = 0;
 
+        if (strlen(q.nom) >= MAX_NOM - 1) {
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+            q.nom[0] = '\0';
+            printf("Erreur : nom trop long (%d caracteres max).\n", MAX_NOM - 1);
+            continue;
+        }
+
         if (q.nom[0] == '\0') {
             printf("Erreur : le nom ne peut pas etre vide.\n");
             continue;
@@ -111,8 +119,18 @@ void saisir_qcm() {
          // Boucle permettant d'avoir des énoncés de questions valides 
         do {
             printf("\nQuestion %d : ", i+1);
+            
             fgets(qi->enonce, 512, stdin);
             qi->enonce[strcspn(qi->enonce, "\n")] = 0;
+            
+            if (strlen(qi->enonce) >= 511) {
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF);
+                qi->enonce[0] = '\0';
+                printf("Erreur : enonce trop long (100 caracteres max).\n");
+                continue;
+            }
+
             if (qi->enonce[0] == '\0')
                 printf("Erreur : l'enonce ne peut pas etre vide.\n");
         } while (qi->enonce[0] == '\0');
@@ -127,8 +145,23 @@ void saisir_qcm() {
                 printf("  Reponse %d : ", j+1);
                 fgets(qi->reponses[j].texte, 256, stdin);
                 qi->reponses[j].texte[strcspn(qi->reponses[j].texte, "\n")] = 0;
-                if (qi->reponses[j].texte[0] == '\0')
+                
+                if (strlen(qi->reponses[j].texte) >= 255) {
+                    int c;
+                    while ((c = getchar()) != '\n' && c != EOF);
+                    qi->reponses[j].texte[0] = '\0';
+                    printf("Erreur : reponse trop longue (60 caracteres max).\n");
+                    continue;
+                }
+                
+                if (strlen(qi->reponses[j].texte) > 60) {
+                    printf("Erreur : reponse trop longue (60 caracteres max).\n");
+                    qi->reponses[j].texte[0] = '\0';
+                }
+
+                if (qi->reponses[j].texte[0] == '\0'){
                     printf("Erreur : la reponse ne peut pas etre vide.\n");
+                }
             } while (qi->reponses[j].texte[0] == '\0');
 
             int val = scanf_secu("  Correcte ? (0/1) : ", 0, 1);
@@ -157,7 +190,12 @@ void saisir_qcm() {
             continue;
         }
     }
-    sauvegarder_qcm(&q);
+    if (sauvegarder_qcm(&q) == -1) {
+        printf("Le QCM n'a pas ete sauvegarde.\n");
+    } 
+    else {
+        printf("QCM sauvegarde avec succes !\n");
+    }
 }
 
 void menu_enseignant() {
@@ -165,6 +203,12 @@ void menu_enseignant() {
     printf("Mot de passe : ");
     fgets(saisie, sizeof(saisie), stdin);
     saisie[strcspn(saisie, "\n")] = 0;
+
+	if (strlen(saisie) >= 63) {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+    }
+	
     if (!verifier_mdp(saisie)) {
         printf("Mot de passe incorrect.\n"); return;
     } 
