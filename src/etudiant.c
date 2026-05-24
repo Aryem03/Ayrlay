@@ -62,6 +62,10 @@ void passer_qcm(QCM *q) {
                         printf("Reponse obligatoire : vous devez cocher au moins une reponse.\n");
                         continue;
                     }
+                    if (nb_coches == 0) {              
+                        reponses[i][0] = -1;           
+                        printf("Question passee.\n"); 
+                    }
                     break;
                 }
                 if (reponses[i][c-1] == 1) {
